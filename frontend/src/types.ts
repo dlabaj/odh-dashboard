@@ -107,24 +107,35 @@ export type BuildStatus = {
   timestamp: string;
 };
 
-export enum NotebookStatus {
-  VALIDITING,
-  SUCCESS,
-  FAILED,
+export type NotebookError = {
+  severity: string;
+  message: string;
 }
 
+export type NotebookStatus = "Importing" | "Validating" | "Succeeded" | "Failed";
+
 export type Notebook = {
-  name: string;
-  repo: string;
-  description?: string;
-  status?: NotebookStatus;
+  id: string;
+  phase?: NotebookStatus;
   user?: string;
   uploaded?: Date;
+  error?: NotebookError;
+} & NotebookCreateRequest & NotebookUpdateRequest;
+
+export type NotebookCreateRequest = {
+  name: string;
+  url: string;
+  description?: string;
+}
+
+export type NotebookUpdateRequest = {
+  id: string;
   visible?: boolean;
   packages?: NotebookPackage[];
-};
+  software?: NotebookPackage[];
+}
 
 export type NotebookPackage = {
   name: string;
   version: string;
-};
+}
