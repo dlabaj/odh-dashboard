@@ -9,7 +9,8 @@ export type DashboardConfig = {
 };
 
 export type ClusterSettings = {
-  pvcSize: number;
+  pvcSize: number | string;
+  cullerTimeout: number;
 };
 
 export type OdhApplication = {
@@ -105,4 +106,43 @@ export type BuildStatus = {
   name: string;
   status: BUILD_PHASE;
   timestamp: string;
+};
+
+export type NotebookError = {
+  severity: string;
+  message: string;
+};
+
+export type NotebookStatus = 'Importing' | 'Validating' | 'Succeeded' | 'Failed';
+
+export type Notebook = {
+  id: string;
+  phase?: NotebookStatus;
+  user?: string;
+  uploaded?: Date;
+  error?: NotebookError;
+  software?: NotebookPackage[];
+} & NotebookCreateRequest &
+  NotebookUpdateRequest;
+
+export type NotebookCreateRequest = {
+  name: string;
+  url: string;
+  description?: string;
+  // FIXME: This shouldn't be a user defined value consumed from the request payload but should be a controlled value from an authentication middleware.
+  user: string;
+};
+
+export type NotebookUpdateRequest = {
+  id: string;
+  name?: string;
+  description?: string;
+  visible?: boolean;
+  packages?: NotebookPackage[];
+};
+
+export type NotebookPackage = {
+  name: string;
+  version: string;
+  visible: boolean;
 };
