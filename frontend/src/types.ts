@@ -515,3 +515,12 @@ export type Volume = {
 };
 
 export type VolumeMount = { mountPath: string; name: string };
+
+export type JuypterUser = {
+  admin: boolean;
+  created: string;
+  last_activity: string | null;
+  name: string;
+  pending: string;
+  server: string;
+};

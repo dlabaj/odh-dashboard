@@ -52,6 +52,7 @@
     "lodash-es": "^4.17.15",
     "node-gyp": "^7.1.2",
     "node-sass": "^4.14.1",
+    "moment": "^2.29.4",
     "react": "^16.13.1",
     "react-cool-dimensions": "^2.0.5",
     "react-dom": "^16.13.1",

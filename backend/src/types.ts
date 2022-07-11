@@ -551,3 +551,12 @@ export type PersistentVolumeClaimListKind = {
   metadata: Record<string, unknown>;
   items: PersistentVolumeClaimKind[];
 };
+
+export type JuypterUser = {
+  admin: boolean;
+  created: string;
+  last_activity: string | null;
+  name: string;
+  pending: string;
+  server: string;
+};
